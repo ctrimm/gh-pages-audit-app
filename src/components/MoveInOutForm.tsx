@@ -25,7 +25,8 @@ const MoveInOutForm = () => {
   const renderQuestion = (question: BaseQuestion | ConditionalQuestion) => {
     const currentAnswer = answers[question.id]?.value;
 
-    switch (question.type) {
+    const questionType = question.type as QuestionType;
+    switch (questionType) {
       case 'boolean':
         return (
           <div className="flex gap-4">
@@ -107,10 +108,10 @@ const MoveInOutForm = () => {
   const estimatedMinutes = Math.ceil(totalQuestions * 3);
 
   const hasPhotoQuestions = segment.questions.some(q => {
-    const isPhotoType = q.type === ('photo' as const);
-    const hasPhotoConditionals = 'conditionalQuestions' in q && 
-      q.conditionalQuestions?.some(cq => cq.type === ('photo' as const));
-    return isPhotoType || hasPhotoConditionals;
+    return (q.type as QuestionType) === 'photo' || (
+      'conditionalQuestions' in q && 
+      q.conditionalQuestions?.some(cq => (cq.type as QuestionType) === 'photo')
+    );
   });
 
   return (
