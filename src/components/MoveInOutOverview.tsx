@@ -22,8 +22,8 @@ const MoveInOutOverview = () => {
 
   const hasPhotoRequirements = moveInOutRequirements.sample_data.segments.some(segment =>
     segment.questions.some((q: MoveInOutQuestionFromData) => {
-      const hasPhotoType = q.type === ('photo' as QuestionType);
-      const hasPhotoConditionals = q.conditionalQuestions?.some(cq => cq.type === ('photo' as QuestionType));
+      const hasPhotoType = (q.type as QuestionType) === 'photo';
+      const hasPhotoConditionals = q.conditionalQuestions?.some(cq => (cq.type as QuestionType) === 'photo');
       return hasPhotoType || !!hasPhotoConditionals;
     })
   );

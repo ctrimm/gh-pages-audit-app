@@ -9,7 +9,7 @@ import { SegmentMetricCard } from './metrics/SegmentMetricCard';
 
 const MoveInOutReport = () => {
   const navigate = useNavigate();
-  const segments = [...moveInOutRequirements.sample_data.segments];
+  const segments: typeof moveInOutRequirements.sample_data.segments = moveInOutRequirements.sample_data.segments;
   const { answers } = useMoveInOut();
 
   // Calculate department scores and metrics
