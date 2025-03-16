@@ -1,0 +1,282 @@
+project:
+  name: "Hospitality Audit App - POC"
+  description: "A proof of concept application for mobile-friendly hospitality auditing"
+  platform: "GitHub Pages"
+  version: "0.1.0"
+
+requirements:
+  functional:
+    form_management:
+      - id: FM-01
+        title: "Create Audit Forms"
+        description: "System shall allow authorized users to define audit forms with various question types"
+        priority: "High"
+        acceptance_criteria:
+          - "Forms can include text, boolean, multiple choice, and rating questions"
+          - "Questions can be grouped into segments (e.g., Booking, Arrival, Room Inspection)"
+          - "Each question can be assigned to a specific department (e.g., Operations, Guest Service)"
+          - "Each question can have value and score properties for weighted reporting"
+      
+      - id: FM-02
+        title: "Required vs Optional Questions"
+        description: "System shall support both required and optional questions"
+        priority: "Medium"
+        acceptance_criteria:
+          - "Required questions must be answered before form submission"
+          - "NA (Not Applicable) options available where appropriate"
+    
+    audit_navigation:
+      - id: AN-01
+        title: "Segment Overview Screen"
+        description: "System shall provide a main screen showing all audit segments for easy navigation"
+        priority: "High"
+        acceptance_criteria:
+          - "All audit segments displayed in a clean, organized manner"
+          - "Visual indicators showing completion status for each segment"
+          - "Ability to click/tap on any segment to access its questions"
+      
+      - id: AN-02
+        title: "Smooth Navigation"
+        description: "System shall provide intuitive navigation between form segments and questions"
+        priority: "High"
+        acceptance_criteria:
+          - "Back button to return to previous screens"
+          - "Save and continue functionality"
+          - "Progress indicator showing completion percentage"
+          - "Ability to jump to any segment from the overview screen"
+    
+    photo_management:
+      - id: PM-01
+        title: "Photo Attachments"
+        description: "System shall allow photo uploads for questions requiring visual evidence"
+        priority: "High"
+        acceptance_criteria:
+          - "Large, touch-friendly upload buttons for mobile users"
+          - "Support for camera access on mobile devices"
+          - "Preview of uploaded photos"
+          - "Clear indication of which questions require photos"
+    
+    reporting:
+      - id: RP-01
+        title: "Dashboard View"
+        description: "System shall provide a visual dashboard summarizing audit results"
+        priority: "High"
+        acceptance_criteria:
+          - "Gauge charts showing performance by segment"
+          - "Score breakdowns by department"
+          - "Visualization of completed vs incomplete items"
+          - "Overall score calculation based on weighted questions"
+      
+      - id: RP-02
+        title: "Completion Tracking"
+        description: "System shall track and display audit completion status"
+        priority: "Medium"
+        acceptance_criteria:
+          - "Visual indicators for completed segments"
+          - "Counter showing completed vs total questions"
+          - "Percentage complete for overall audit"
+    
+    scoring:
+      - id: SC-01
+        title: "Weighted Scoring System"
+        description: "System shall calculate scores based on question weights and values"
+        priority: "Medium"
+        acceptance_criteria:
+          - "Each question has configurable value and score properties"
+          - "Department-specific calculations"
+          - "Aggregated scores by segment and overall"
+
+  non_functional:
+    usability:
+      - id: US-01
+        title: "Mobile Optimization"
+        description: "System shall be fully optimized for mobile use"
+        priority: "Critical"
+        acceptance_criteria:
+          - "Responsive design that works on all screen sizes"
+          - "Touch-friendly interface elements (min 44x44px touch targets)"
+          - "Optimized for one-handed operation where possible"
+          - "Landscape and portrait orientation support"
+      
+      - id: US-02
+        title: "Offline Capability"
+        description: "System shall support basic offline functionality"
+        priority: "Medium"
+        acceptance_criteria:
+          - "Local storage of in-progress audits"
+          - "Synchronization when connection is restored"
+    
+    performance:
+      - id: PF-01
+        title: "Loading Speed"
+        description: "System shall load quickly on mobile devices"
+        priority: "High"
+        acceptance_criteria:
+          - "Initial load under 3 seconds on 4G connection"
+          - "Smooth transitions between screens"
+    
+    security:
+      - id: SE-01
+        title: "Data Protection"
+        description: "System shall protect audit data appropriately"
+        priority: "Medium"
+        acceptance_criteria:
+          - "Secure storage of audit data"
+          - "User authentication for accessing complete reports"
+
+sample_data:
+  segments:
+    - id: 1
+      name: "Booking"
+      description: "Evaluation of the booking experience"
+      questions:
+        - id: "B-01"
+          text: "The website was easy to understand and navigate."
+          type: "boolean"
+          required: true
+          department: "Operations"
+          value: 5
+          score: 5
+        - id: "B-02"
+          text: "Room photos are high quality and appealing."
+          type: "boolean"
+          required: true
+          department: "Marketing"
+          value: 3
+          score: 3
+        - id: "B-03"
+          text: "You easily found information indicating the hotel was pet-friendly."
+          type: "boolean"
+          required: true
+          department: "Marketing"
+          value: 2
+          score: 0
+          
+    - id: 2
+      name: "Arrival"
+      description: "Evaluation of the arrival experience"
+      questions:
+        - id: "A-01"
+          text: "Was someone on the drive waiting and ready to receive you and other guests?"
+          type: "boolean"
+          required: true
+          department: "Guest Service"
+          value: 8
+          score: 0
+        - id: "A-02"
+          text: "Did an associate open your door(s) for you once you pulled up?"
+          type: "boolean"
+          required: true
+          department: "Guest Service"
+          value: 5
+          score: 0
+        - id: "A-03"
+          text: "What time is it as you pull up to the drive?"
+          type: "text"
+          required: true
+          department: "Operations"
+          value: 0
+          score: 0
+          
+    - id: 3
+      name: "Room Inspection"
+      description: "Evaluation of the guest room"
+      questions:
+        - id: "R-01"
+          text: "There are no obvious defects upon arrival."
+          type: "boolean"
+          required: true
+          department: "Housekeeping"
+          value: 10
+          score: 10
+        - id: "R-02"
+          text: "The room smelled fresh and inviting; no off-odors."
+          type: "boolean"
+          required: true
+          department: "Housekeeping"
+          value: 8
+          score: 0
+        - id: "R-03"
+          text: "Photo of duvet insert tag next to room key packet demonstrating the poly fill"
+          type: "photo"
+          required: true
+          department: "Quality Control"
+          value: 5
+          score: 5
+
+ui_components:
+  - component: "SegmentOverview"
+    description: "Grid or list view of all audit segments with completion status"
+    priority: "High"
+    
+  - component: "QuestionForm"
+    description: "Form displaying questions for a selected segment with appropriate input controls"
+    priority: "High"
+    
+  - component: "PhotoUploader"
+    description: "Large touch-friendly component for capturing and uploading photos"
+    priority: "High"
+    
+  - component: "NavigationControls"
+    description: "Back, next, and save buttons for moving between segments"
+    priority: "High"
+    
+  - component: "ProgressIndicator"
+    description: "Visual indicator of audit completion progress"
+    priority: "Medium"
+    
+  - component: "ReportDashboard"
+    description: "Visual dashboard with gauge charts and completion metrics"
+    priority: "High"
+
+technical_specifications:
+  frontend:
+    - "HTML5/CSS3/JavaScript"
+    - "React.js for UI components"
+    - "Responsive design using Flexbox/Grid"
+    - "Chart.js or D3.js for gauge charts and visualizations"
+    
+  data_storage:
+    - "Local Storage for offline capability"
+    - "JSON format for data interchange"
+    
+  deployment:
+    - "GitHub Pages for hosting"
+    - "Progressive Web App (PWA) capabilities"
+
+milestones:
+  - phase: "Design"
+    deliverables:
+      - "Wireframes for all main screens"
+      - "UI component design"
+      - "Data model specification"
+    timeframe: "2 weeks"
+    
+  - phase: "Development - Core"
+    deliverables:
+      - "Segment overview screen"
+      - "Question form components"
+      - "Basic navigation"
+    timeframe: "3 weeks"
+    
+  - phase: "Development - Features"
+    deliverables:
+      - "Photo upload functionality"
+      - "Scoring and calculation logic"
+      - "Local storage implementation"
+    timeframe: "3 weeks"
+    
+  - phase: "Development - Reporting"
+    deliverables:
+      - "Dashboard implementation"
+      - "Gauge charts and metrics"
+      - "Export capabilities"
+    timeframe: "2 weeks"
+    
+  - phase: "Testing & Refinement"
+    deliverables:
+      - "User testing on mobile devices"
+      - "Performance optimization"
+      - "Bug fixes"
+    timeframe: "2 weeks"
+    
