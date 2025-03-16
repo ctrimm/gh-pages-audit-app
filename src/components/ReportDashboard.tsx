@@ -10,7 +10,7 @@ import { SegmentMetricCard } from './metrics/SegmentMetricCard';
 const ReportDashboard = () => {
   const navigate = useNavigate();
   const segments = [...requirements.sample_data.segments];
-  const { answers, getTotalProgress } = useAudit();
+  const { answers } = useAudit();
 
   // Calculate department scores and metrics
   const departmentMetrics = segments.reduce((acc, segment) => {
