@@ -68,7 +68,8 @@ const AuditForm = () => {
   };
 
   const renderConditionalQuestions = (question: QuestionFromData) => {
-    if (!('conditionalQuestions' in question) || !question.conditionalQuestions) {
+    const hasConditionals = 'conditionalQuestions' in question && question.conditionalQuestions;
+    if (!hasConditionals) {
       return null;
     }
 
@@ -93,8 +94,43 @@ const AuditForm = () => {
     });
   };
 
+  // Calculate total questions including conditionals
+  const totalQuestions = segment.questions.reduce((acc, question) => {
+    let count = 1; // Main question
+    const hasConditionals = 'conditionalQuestions' in question && question.conditionalQuestions;
+    if (hasConditionals) {
+      count += question.conditionalQuestions.length;
+    }
+    return acc + count;
+  }, 0);
+
+  // Estimate completion time (2 min per question as some need photos)
+  const estimatedMinutes = Math.ceil(totalQuestions * 2);
+
+  const hasPhotoQuestions = segment.questions.some(q => 
+    q.type === 'photo' || 
+    ('conditionalQuestions' in q && q.conditionalQuestions?.some((cq: ConditionalQuestion) => cq.type === 'photo'))
+  );
+
   return (
     <div className="space-y-6">
+      <Card className="p-6 bg-gradient-to-r from-blue-50 to-indigo-50">
+        <div className="space-y-4">
+          <h2 className="text-2xl font-bold text-blue-900">Welcome to the {segment.name} Audit</h2>
+          <div className="space-y-2">
+            <p className="text-blue-800">This audit will help evaluate the {segment.name.toLowerCase()} experience. Here's what you need to know:</p>
+            <ul className="list-disc list-inside space-y-1 text-blue-700 ml-2">
+              <li>You'll answer {totalQuestions} questions about various aspects of the {segment.name.toLowerCase()} experience</li>
+              {hasPhotoQuestions && (
+                <li>Some questions require photos - please ensure your camera/device is ready</li>
+              )}
+              <li>Estimated completion time: {estimatedMinutes} minutes</li>
+              <li>You can save and return to complete the audit later</li>
+            </ul>
+          </div>
+        </div>
+      </Card>
+
       <div className="flex items-center justify-between">
         <div className="space-y-1">
           <h2 className="text-2xl font-bold">{segment.name}</h2>
