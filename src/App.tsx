@@ -1,17 +1,10 @@
-import { Routes, Route } from 'react-router-dom';
-import SegmentOverview from './components/SegmentOverview';
-import AuditForm from './components/AuditForm';
-import ReportDashboard from './components/ReportDashboard';
+import { Outlet } from 'react-router-dom';
 
 function App() {
   return (
     <div className="min-h-screen bg-background">
       <div className="container mx-auto py-8">
-        <Routes>
-          <Route path="/" element={<SegmentOverview />} />
-          <Route path="/segment/:segmentId" element={<AuditForm />} />
-          <Route path="/report" element={<ReportDashboard />} />
-        </Routes>
+        <Outlet />
       </div>
     </div>
   );

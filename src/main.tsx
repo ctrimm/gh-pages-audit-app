@@ -1,21 +1,26 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { createHashRouter, RouterProvider } from 'react-router-dom'
-import App from './App.tsx'
+import { HashRouter, Routes, Route } from 'react-router-dom'
 import './index.css'
 import { AuditProvider } from './context/AuditContext.tsx'
-
-const router = createHashRouter([
-  {
-    path: "/",
-    element: <App />,
-  },
-]);
+import SegmentOverview from './components/SegmentOverview'
+import AuditForm from './components/AuditForm'
+import ReportDashboard from './components/ReportDashboard'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <AuditProvider>
-      <RouterProvider router={router} />
+      <HashRouter>
+        <div className="min-h-screen bg-background">
+          <div className="container mx-auto py-8">
+            <Routes>
+              <Route path="/" element={<SegmentOverview />} />
+              <Route path="/segment/:segmentId" element={<AuditForm />} />
+              <Route path="/report" element={<ReportDashboard />} />
+            </Routes>
+          </div>
+        </div>
+      </HashRouter>
     </AuditProvider>
   </React.StrictMode>,
 )
