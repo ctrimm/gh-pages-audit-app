@@ -3,36 +3,69 @@ export const moveInOutRequirements = {
     segments: [
       {
         id: 1,
-        name: "Booking",
-        description: "Evaluation of the booking experience",
+        name: "General Condition",
+        description: "Overall condition of the property",
         questions: [
           {
-            id: "B-01",
-            text: "The website was easy to understand and navigate.",
+            id: "G-01",
+            text: "Walls are in good condition (no holes, major scuffs, or damage)",
             type: "boolean",
             required: true,
-            department: "Operations",
-            value: 5,
-            score: 5
-          },
-          {
-            id: "B-02",
-            text: "Room photos are high quality and appealing.",
-            type: "boolean",
-            required: true,
-            department: "Marketing",
-            value: 3,
-            score: 3,
+            department: "Property Management",
+            value: 10,
+            score: 10,
             conditionalQuestions: [
               {
-                id: "B-02-1",
-                text: "Please provide a screenshot of a low-quality photo.",
+                id: "G-01-1",
+                text: "Please photograph and describe wall damage",
                 type: "photo",
                 required: true,
-                department: "Marketing",
-                value: 2,
+                department: "Property Management",
+                value: 0,
                 score: 0,
-                showWhen: (answers: Record<string, any>) => answers["B-02"]?.value === false
+                showWhen: (answers: Record<string, any>) => answers["G-01"]?.value === false
+              }
+            ]
+          },
+          {
+            id: "G-02",
+            text: "Flooring is in good condition (no stains, tears, or damage)",
+            type: "boolean",
+            required: true,
+            department: "Property Management",
+            value: 8,
+            score: 8,
+            conditionalQuestions: [
+              {
+                id: "G-02-1",
+                text: "Please photograph and describe floor damage",
+                type: "photo",
+                required: true,
+                department: "Property Management",
+                value: 0,
+                score: 0,
+                showWhen: (answers: Record<string, any>) => answers["G-02"]?.value === false
+              }
+            ]
+          },
+          {
+            id: "G-03",
+            text: "Windows and screens are intact and functioning properly",
+            type: "boolean",
+            required: true,
+            department: "Property Management",
+            value: 6,
+            score: 6,
+            conditionalQuestions: [
+              {
+                id: "G-03-1",
+                text: "Document any window or screen issues",
+                type: "photo",
+                required: true,
+                department: "Property Management",
+                value: 0,
+                score: 0,
+                showWhen: (answers: Record<string, any>) => answers["G-03"]?.value === false
               }
             ]
           }
@@ -40,48 +73,69 @@ export const moveInOutRequirements = {
       },
       {
         id: 2,
-        name: "Arrival",
-        description: "Evaluation of the arrival experience",
+        name: "Kitchen",
+        description: "Kitchen appliances and fixtures",
         questions: [
           {
-            id: "A-01",
-            text: "Was someone on the drive waiting and ready to receive you and other guests?",
+            id: "K-01",
+            text: "All appliances are functioning properly (refrigerator, stove, dishwasher)",
             type: "boolean",
             required: true,
-            department: "Guest Service",
-            value: 8,
-            score: 0,
+            department: "Maintenance",
+            value: 10,
+            score: 10,
             conditionalQuestions: [
               {
-                id: "A-01-1",
-                text: "How long did you wait before someone arrived?",
+                id: "K-01-1",
+                text: "List non-functioning appliances and issues",
                 type: "text",
                 required: true,
-                department: "Guest Service",
-                value: 2,
+                department: "Maintenance",
+                value: 0,
                 score: 0,
-                showWhen: (answers: Record<string, any>) => answers["A-01"]?.value === false
+                showWhen: (answers: Record<string, any>) => answers["K-01"]?.value === false
               }
             ]
           },
           {
-            id: "A-02",
-            text: "The check-in process was efficient and all pre-arrival preferences were noted.",
+            id: "K-02",
+            text: "Countertops and cabinets are in good condition",
             type: "boolean",
             required: true,
-            department: "Front Office",
+            department: "Property Management",
             value: 7,
             score: 7,
             conditionalQuestions: [
               {
-                id: "A-02-1",
-                text: "What preferences were missed?",
-                type: "text",
+                id: "K-02-1",
+                text: "Please photograph any damage to countertops or cabinets",
+                type: "photo",
                 required: true,
-                department: "Front Office",
+                department: "Property Management",
                 value: 0,
                 score: 0,
-                showWhen: (answers: Record<string, any>) => answers["A-02"]?.value === false
+                showWhen: (answers: Record<string, any>) => answers["K-02"]?.value === false
+              }
+            ]
+          },
+          {
+            id: "K-03",
+            text: "Sink and faucet are working properly with no leaks",
+            type: "boolean",
+            required: true,
+            department: "Maintenance",
+            value: 5,
+            score: 5,
+            conditionalQuestions: [
+              {
+                id: "K-03-1",
+                text: "Document any plumbing issues",
+                type: "text",
+                required: true,
+                department: "Maintenance",
+                value: 0,
+                score: 0,
+                showWhen: (answers: Record<string, any>) => answers["K-03"]?.value === false
               }
             ]
           }
@@ -89,48 +143,69 @@ export const moveInOutRequirements = {
       },
       {
         id: 3,
-        name: "Room Inspection",
-        description: "Evaluation of the guest room",
+        name: "Bathrooms",
+        description: "Bathroom fixtures and condition",
         questions: [
           {
-            id: "R-01",
-            text: "There are no obvious defects upon arrival.",
+            id: "B-01",
+            text: "All plumbing fixtures are functioning properly (no leaks)",
             type: "boolean",
             required: true,
-            department: "Housekeeping",
+            department: "Maintenance",
             value: 10,
             score: 10,
             conditionalQuestions: [
               {
-                id: "R-01-1",
-                text: "Please describe and photograph any defects found.",
-                type: "photo",
+                id: "B-01-1",
+                text: "Document location and nature of plumbing issues",
+                type: "text",
                 required: true,
-                department: "Housekeeping",
+                department: "Maintenance",
                 value: 0,
                 score: 0,
-                showWhen: (answers: Record<string, any>) => answers["R-01"]?.value === false
+                showWhen: (answers: Record<string, any>) => answers["B-01"]?.value === false
               }
             ]
           },
           {
-            id: "R-02",
-            text: "The room smelled fresh and inviting; no off-odors.",
+            id: "B-02",
+            text: "Tiles and grout are in good condition",
             type: "boolean",
             required: true,
-            department: "Housekeeping",
-            value: 8,
-            score: 0,
+            department: "Property Management",
+            value: 6,
+            score: 6,
             conditionalQuestions: [
               {
-                id: "R-02-1",
-                text: "Describe the odor detected.",
-                type: "text",
+                id: "B-02-1",
+                text: "Please photograph damaged tiles or grout",
+                type: "photo",
                 required: true,
-                department: "Housekeeping",
+                department: "Property Management",
                 value: 0,
                 score: 0,
-                showWhen: (answers: Record<string, any>) => answers["R-02"]?.value === false
+                showWhen: (answers: Record<string, any>) => answers["B-02"]?.value === false
+              }
+            ]
+          },
+          {
+            id: "B-03",
+            text: "Toilet is securely mounted and functioning properly",
+            type: "boolean",
+            required: true,
+            department: "Maintenance",
+            value: 8,
+            score: 8,
+            conditionalQuestions: [
+              {
+                id: "B-03-1",
+                text: "Describe any toilet issues",
+                type: "text",
+                required: true,
+                department: "Maintenance",
+                value: 0,
+                score: 0,
+                showWhen: (answers: Record<string, any>) => answers["B-03"]?.value === false
               }
             ]
           }
@@ -138,48 +213,69 @@ export const moveInOutRequirements = {
       },
       {
         id: 4,
-        name: "In-Room Dining",
-        description: "Evaluation of the room service experience",
+        name: "Safety Features",
+        description: "Safety equipment and features",
         questions: [
           {
-            id: "IRD-01",
-            text: "Digital/printed menu was current and easily accessible.",
+            id: "S-01",
+            text: "Smoke detectors are present and functional",
             type: "boolean",
             required: true,
-            department: "Food & Beverage",
-            value: 5,
-            score: 5,
+            department: "Safety",
+            value: 10,
+            score: 10,
             conditionalQuestions: [
               {
-                id: "IRD-01-1",
-                text: "What discrepancies were found in the menu?",
+                id: "S-01-1",
+                text: "Note locations of missing or non-functional smoke detectors",
                 type: "text",
                 required: true,
-                department: "Food & Beverage",
+                department: "Safety",
                 value: 0,
                 score: 0,
-                showWhen: (answers: Record<string, any>) => answers["IRD-01"]?.value === false
+                showWhen: (answers: Record<string, any>) => answers["S-01"]?.value === false
               }
             ]
           },
           {
-            id: "IRD-02",
-            text: "Order was delivered within the promised timeframe.",
+            id: "S-02",
+            text: "All doors and windows lock properly",
             type: "boolean",
             required: true,
-            department: "Food & Beverage",
+            department: "Safety",
             value: 8,
             score: 8,
             conditionalQuestions: [
               {
-                id: "IRD-02-1",
-                text: "How long did you wait beyond the promised time?",
+                id: "S-02-1",
+                text: "List locations of faulty locks",
                 type: "text",
                 required: true,
-                department: "Food & Beverage",
-                value: 2,
+                department: "Safety",
+                value: 0,
                 score: 0,
-                showWhen: (answers: Record<string, any>) => answers["IRD-02"]?.value === false
+                showWhen: (answers: Record<string, any>) => answers["S-02"]?.value === false
+              }
+            ]
+          },
+          {
+            id: "S-03",
+            text: "Carbon monoxide detector is present and functional (if required)",
+            type: "boolean",
+            required: true,
+            department: "Safety",
+            value: 7,
+            score: 7,
+            conditionalQuestions: [
+              {
+                id: "S-03-1",
+                text: "Note any issues with carbon monoxide detector",
+                type: "text",
+                required: true,
+                department: "Safety",
+                value: 0,
+                score: 0,
+                showWhen: (answers: Record<string, any>) => answers["S-03"]?.value === false
               }
             ]
           }
@@ -187,48 +283,48 @@ export const moveInOutRequirements = {
       },
       {
         id: 5,
-        name: "Housekeeping Service",
-        description: "Evaluation of daily housekeeping service",
+        name: "Keys and Access",
+        description: "Property access items",
         questions: [
           {
-            id: "H-01",
-            text: "Room was serviced at the requested time.",
+            id: "A-01",
+            text: "All required keys are present and functional",
             type: "boolean",
             required: true,
-            department: "Housekeeping",
+            department: "Property Management",
             value: 5,
             score: 5,
             conditionalQuestions: [
               {
-                id: "H-01-1",
-                text: "What time was service requested vs. completed?",
+                id: "A-01-1",
+                text: "List missing or non-functional keys",
                 type: "text",
                 required: true,
-                department: "Housekeeping",
+                department: "Property Management",
                 value: 0,
                 score: 0,
-                showWhen: (answers: Record<string, any>) => answers["H-01"]?.value === false
+                showWhen: (answers: Record<string, any>) => answers["A-01"]?.value === false
               }
             ]
           },
           {
-            id: "H-02",
-            text: "Turndown service included all standard elements.",
+            id: "A-02",
+            text: "Access codes/fobs are working properly",
             type: "boolean",
             required: true,
-            department: "Housekeeping",
-            value: 8,
-            score: 8,
+            department: "Property Management",
+            value: 5,
+            score: 5,
             conditionalQuestions: [
               {
-                id: "H-02-1",
-                text: "Please photograph any missing turndown elements.",
-                type: "photo",
+                id: "A-02-1",
+                text: "Document any access code or fob issues",
+                type: "text",
                 required: true,
-                department: "Housekeeping",
+                department: "Property Management",
                 value: 0,
                 score: 0,
-                showWhen: (answers: Record<string, any>) => answers["H-02"]?.value === false
+                showWhen: (answers: Record<string, any>) => answers["A-02"]?.value === false
               }
             ]
           }
