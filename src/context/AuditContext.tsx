@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, ReactNode } from 'react';
+import { requirements, type QuestionFromData } from '../data/requirements';
 
 type AnswerValue = boolean | string | File;
 
@@ -32,25 +33,58 @@ export function AuditProvider({ children }: { children: ReactNode }) {
   };
 
   const getSegmentProgress = (segmentId: number) => {
-    const segmentAnswers = Object.values(answers).filter(
-      (answer) => answer.segmentId === segmentId
-    );
+    const segment = requirements.sample_data.segments.find(s => s.id === segmentId);
+    if (!segment) return 0;
 
-    const totalQuestions = Object.values(answers).reduce((count, answer) => {
-      if (answer.segmentId === segmentId) {
-        count++;
+    let totalQuestions = segment.questions.length;
+    let answeredQuestions = 0;
+
+    segment.questions.forEach((question: QuestionFromData) => {
+      if (answers[question.id]?.value !== undefined) {
+        answeredQuestions++;
       }
-      return count;
-    }, 0);
 
-    return Math.round((segmentAnswers.length / totalQuestions) * 100) || 0;
+      // Count conditional questions if their parent question is answered appropriately
+      if ('conditionalQuestions' in question && question.conditionalQuestions) {
+        question.conditionalQuestions.forEach(conditionalQ => {
+          if (conditionalQ.showWhen(answers)) {
+            totalQuestions++;
+            if (answers[conditionalQ.id]?.value !== undefined) {
+              answeredQuestions++;
+            }
+          }
+        });
+      }
+    });
+
+    return Math.round((answeredQuestions / totalQuestions) * 100) || 0;
   };
 
   const getTotalProgress = () => {
-    const totalQuestions = Object.keys(answers).length;
-    const answeredQuestions = Object.values(answers).filter(
-      (answer) => answer.value !== undefined && answer.value !== ''
-    ).length;
+    let totalQuestions = 0;
+    let answeredQuestions = 0;
+
+    requirements.sample_data.segments.forEach(segment => {
+      segment.questions.forEach((question: QuestionFromData) => {
+        totalQuestions++;
+        if (answers[question.id]?.value !== undefined) {
+          answeredQuestions++;
+        }
+
+        // Count conditional questions if their parent question is answered appropriately
+        if ('conditionalQuestions' in question && question.conditionalQuestions) {
+          question.conditionalQuestions.forEach(conditionalQ => {
+            if (conditionalQ.showWhen(answers)) {
+              totalQuestions++;
+              if (answers[conditionalQ.id]?.value !== undefined) {
+                answeredQuestions++;
+              }
+            }
+          });
+        }
+      });
+    });
+
     return Math.round((answeredQuestions / totalQuestions) * 100) || 0;
   };
 

@@ -1,6 +1,4 @@
 import { useNavigate } from 'react-router-dom';
-import { Card } from './ui/card';
-import { Progress } from './ui/progress';
 import { Button } from './ui/button';
 import { requirements } from '../data/requirements';
 import { useAudit } from '../context/AuditContext';
@@ -12,7 +10,7 @@ import { SegmentMetricCard } from './metrics/SegmentMetricCard';
 const ReportDashboard = () => {
   const navigate = useNavigate();
   const segments = [...requirements.sample_data.segments];
-  const { answers } = useAudit();
+  const { answers, getTotalProgress } = useAudit();
 
   // Calculate department scores and metrics
   const departmentMetrics = segments.reduce((acc, segment) => {
@@ -111,17 +109,6 @@ const ReportDashboard = () => {
           Back to Overview
         </Button>
       </div>
-
-      <Card className="p-6">
-        <h3 className="text-xl font-semibold mb-4">Overall Performance</h3>
-        <div className="space-y-2">
-          <div className="flex justify-between">
-            <span>Total Score</span>
-            <span>{overallPercentage}%</span>
-          </div>
-          <Progress value={overallPercentage} className="h-2" />
-        </div>
-      </Card>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <DepartmentBarChart departmentMetrics={departmentMetrics} />
