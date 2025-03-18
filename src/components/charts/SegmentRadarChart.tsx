@@ -2,7 +2,6 @@ import { Card } from '../ui/card';
 import { RadarChart, PolarGrid, PolarAngleAxis, Radar, ResponsiveContainer, Legend } from 'recharts';
 import { ChartTooltip, ChartTooltipContent } from '../ui/chart';
 import { type Segment } from '../../data/requirements';
-import { type MoveInOutSegment } from '../../data/moveInOutRequirements';
 
 interface SegmentMetrics {
   totalValue: number;
@@ -13,7 +12,7 @@ interface SegmentMetrics {
 }
 
 interface SegmentRadarChartProps {
-  segments: readonly (Segment | MoveInOutSegment)[];
+  segments: readonly Segment[];
   segmentMetrics: Record<number, SegmentMetrics>;
 }
 

@@ -113,8 +113,8 @@ const AuditForm = () => {
   );
 
   return (
-    <div className="space-y-6">
-      <Card className="p-6 bg-gradient-to-r from-blue-50 to-indigo-50">
+    <div className="py-8 space-y-8">
+      <Card className="p-8 bg-gradient-to-r from-blue-50 to-indigo-50">
         <div className="space-y-4">
           <h2 className="text-2xl font-bold text-blue-900">Welcome to the {segment.name} Audit</h2>
           <div className="space-y-2">
@@ -138,17 +138,17 @@ const AuditForm = () => {
         </div>
         <Button
           variant="secondary"
-          onClick={() => navigate('/')}
+          onClick={() => navigate('/audit')}
           className="touch-target"
         >
           Back to Overview
         </Button>
       </div>
 
-      <div className="space-y-6">
+      <div className="space-y-8">
         {segment.questions.map((question) => (
-          <div key={question.id} className="space-y-4">
-            <Card className="p-4">
+          <div key={question.id} className="space-y-6">
+            <Card className="p-6">
               <div className="space-y-4">
                 <div className="flex justify-between">
                   <h3 className="font-medium">{question.text}</h3>
@@ -166,15 +166,15 @@ const AuditForm = () => {
 
       <div className="flex justify-end gap-4">
         <Button
-          variant="secondary"
-          onClick={() => navigate('/')}
+          variant="outline"
+          onClick={() => navigate('/audit')}
           className="touch-target"
         >
           Save & Exit
         </Button>
         <Button
           onClick={() => navigate('/report')}
-          className="touch-target"
+          className="touch-target px-8"
         >
           Complete Audit
         </Button>

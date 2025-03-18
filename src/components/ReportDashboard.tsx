@@ -7,10 +7,25 @@ import { SegmentRadarChart } from './charts/SegmentRadarChart';
 import { DepartmentMetricCard } from './metrics/DepartmentMetricCard';
 import { SegmentMetricCard } from './metrics/SegmentMetricCard';
 
-const ReportDashboard = () => {
+interface ReportDashboardProps {
+  isRandomData?: boolean;
+}
+
+const ReportDashboard = ({ isRandomData = false }: ReportDashboardProps) => {
   const navigate = useNavigate();
   const segments = [...requirements.sample_data.segments];
   const { answers } = useAudit();
+
+  // Generate seeded random number between 0 and 1
+  const seededRandom = (seed: string) => {
+    const numericSeed = seed.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+    return Math.abs(Math.sin(numericSeed)) % 1;
+  };
+
+  // Generate random metrics based on seed
+  const generateRandomMetrics = (seed: string, min: number, max: number) => {
+    return Math.floor(seededRandom(seed) * (max - min + 1) + min);
+  };
 
   // Calculate department scores and metrics
   const departmentMetrics = segments.reduce((acc, segment) => {
@@ -29,11 +44,17 @@ const ReportDashboard = () => {
       acc[question.department].questionCount += 1;
       acc[question.department].maxPossibleScore += question.value;
 
-      const answer = answers[question.id];
-      if (answer) {
+      if (isRandomData) {
+        const randomScore = generateRandomMetrics(`${question.department}-${question.id}`, 60, 100);
         acc[question.department].answeredCount += 1;
-        if (answer.value === true) {
-          acc[question.department].earnedScore += question.score;
+        acc[question.department].earnedScore += Math.floor(question.score * (randomScore / 100));
+      } else {
+        const answer = answers[question.id];
+        if (answer) {
+          acc[question.department].answeredCount += 1;
+          if (answer.value === true) {
+            acc[question.department].earnedScore += question.score;
+          }
         }
       }
     });
@@ -52,11 +73,17 @@ const ReportDashboard = () => {
       segAcc.totalValue += question.value;
       segAcc.maxPossibleScore += question.value;
       
-      const answer = answers[question.id];
-      if (answer) {
+      if (isRandomData) {
+        const randomScore = generateRandomMetrics(`${segment.id}-${question.id}`, 60, 100);
         segAcc.answeredCount += 1;
-        if (answer.value === true) {
-          segAcc.earnedScore += question.score;
+        segAcc.earnedScore += Math.floor(question.score * (randomScore / 100));
+      } else {
+        const answer = answers[question.id];
+        if (answer) {
+          segAcc.answeredCount += 1;
+          if (answer.value === true) {
+            segAcc.earnedScore += question.score;
+          }
         }
       }
       return segAcc;
@@ -92,7 +119,7 @@ const ReportDashboard = () => {
   const overallPercentage = Math.round((overallMetrics.earnedScore / overallMetrics.maxPossibleScore) * 100) || 0;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 mt-4">
       <div className="flex items-center justify-between">
         <div className="space-y-1">
           <h2 className="text-2xl font-bold">Audit Report</h2>
@@ -103,7 +130,7 @@ const ReportDashboard = () => {
         </div>
         <Button
           variant="secondary"
-          onClick={() => navigate('/')}
+          onClick={() => navigate('/audit')}
           className="touch-target"
         >
           Back to Overview

@@ -31,82 +31,109 @@ const SegmentOverview = () => {
   const estimatedTotalMinutes = Math.ceil(totalQuestions * 2);
 
   return (
-    <div className="space-y-6">
-      <div className="flex justify-end">
+    <div className="py-8 space-y-6">
+      <div className="flex items-center justify-between mb-6">
         <Button
-          variant="outline"
-          onClick={() => navigate('/move-in-out')}
-          className="touch-target"
+          variant="ghost"
+          onClick={() => navigate('/dashboard')}
+          className="text-muted-foreground hover:text-foreground"
         >
-          Property Move-In/Out Inspection
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="mr-2 h-4 w-4"
+          >
+            <path d="m15 18-6-6 6-6"/>
+          </svg>
+          Back to Dashboard
         </Button>
       </div>
 
-      <Card className="p-6 bg-gradient-to-r from-blue-50 to-indigo-50">
+      <div className="relative">
+        {/* Hero Image */}
+        <div className="h-[400px] w-full overflow-hidden rounded-xl relative">
+          <img 
+            src="https://lh3.googleusercontent.com/p/AF1QipNwMcCOS4AX0gN0Xm41v5611HCEHlbWT5nU0P_W=s1360-w1360-h1020"
+            alt="Omni Bedford Springs Resort" 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+          <div className="absolute bottom-0 left-0 p-8 text-white">
+            <h1 className="text-4xl font-bold mb-2">Omni Bedford Springs</h1>
+            <p className="text-lg opacity-90">Current Audit in Progress</p>
+          </div>
+        </div>
+      </div>
+
+      <Card className="p-8 bg-white shadow-lg -mt-20 relative z-10">
         <div className="space-y-4">
-          <h2 className="text-2xl font-bold text-blue-900">Welcome to Your Hotel Audit</h2>
-          <div className="space-y-2">
-            <p className="text-blue-800">This audit will help evaluate various aspects of the guest experience. Here's what you need to know:</p>
-            <ul className="list-disc list-inside space-y-1 text-blue-700 ml-2">
-              <li>The audit is divided into {requirements.sample_data.segments.length} segments, covering the entire guest journey</li>
-              <li>You'll answer {totalQuestions} questions across all segments</li>
-              {hasPhotoRequirements && (
-                <li>Some segments require photos - please ensure your camera/device is ready</li>
-              )}
-              <li>Estimated total completion time: {estimatedTotalMinutes} minutes</li>
-              <li>You can complete segments in any order</li>
-              <li>Progress is automatically saved - return anytime to continue</li>
-            </ul>
+          <div className="flex items-center justify-between">
+            <div>
+              <h2 className="text-2xl font-semibold">Guest Experience Audit</h2>
+              <p className="text-muted-foreground">Guest Stay: April 5-7, 2024</p>
+            </div>
+            <div className="text-right">
+              <div className="text-lg font-semibold">{getTotalProgress()}% Complete</div>
+              <Progress value={getTotalProgress()} className="w-32" />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-3 gap-4 text-center py-6 border-y">
+            <div>
+              <div className="text-2xl font-semibold">{requirements.sample_data.segments.length}</div>
+              <div className="text-sm text-muted-foreground">Segments</div>
+            </div>
+            <div>
+              <div className="text-2xl font-semibold">{totalQuestions}</div>
+              <div className="text-sm text-muted-foreground">Questions</div>
+            </div>
+            <div>
+              <div className="text-2xl font-semibold">{estimatedTotalMinutes}</div>
+              <div className="text-sm text-muted-foreground">Minutes</div>
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            <div className="flex justify-between items-center">
+              <h3 className="text-lg font-semibold">Audit Segments</h3>
+              <Button
+                onClick={() => navigate('/report')}
+                variant="outline"
+              >
+                View Report
+              </Button>
+            </div>
+
+            <div className="grid gap-6">
+              {requirements.sample_data.segments.map((segment) => (
+                <Card
+                  key={segment.id}
+                  className="p-4 hover:bg-accent/50 transition-colors cursor-pointer"
+                  onClick={() => navigate(`/audit/segment/${segment.id}`)}
+                >
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h4 className="font-medium">{segment.name}</h4>
+                      <p className="text-sm text-muted-foreground">{segment.description}</p>
+                    </div>
+                    <div className="text-right min-w-[100px]">
+                      <div className="text-sm font-medium">{getSegmentProgress(segment.id)}%</div>
+                      <Progress value={getSegmentProgress(segment.id)} className="w-24" />
+                    </div>
+                  </div>
+                </Card>
+              ))}
+            </div>
           </div>
         </div>
       </Card>
-
-      <div className="flex items-center justify-between">
-        <div className="space-y-1">
-          <h2 className="text-2xl font-bold">Audit Segments</h2>
-          <div className="flex items-center gap-2">
-            <span className="text-sm text-muted-foreground">Overall Progress:</span>
-            <span className="text-sm font-medium">{getTotalProgress()}%</span>
-          </div>
-        </div>
-        <Button
-          onClick={() => navigate('/report')}
-          className="touch-target"
-        >
-          View Report
-        </Button>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {requirements.sample_data.segments.map((segment) => (
-          <Card
-            key={segment.id}
-            className="p-4 cursor-pointer hover:bg-accent/50 transition-colors"
-            onClick={() => navigate(`/segment/${segment.id}`)}
-          >
-            <div className="space-y-4">
-              <div>
-                <h3 className="font-medium">{segment.name}</h3>
-                <p className="text-sm text-muted-foreground">
-                  {segment.description}
-                </p>
-              </div>
-
-              <div className="space-y-2">
-                <div className="flex justify-between text-sm">
-                  <span>Progress</span>
-                  <span>{getSegmentProgress(segment.id)}%</span>
-                </div>
-                <Progress value={getSegmentProgress(segment.id)} />
-              </div>
-
-              <div className="text-sm text-muted-foreground">
-                {segment.questions.length} Questions
-              </div>
-            </div>
-          </Card>
-        ))}
-      </div>
     </div>
   );
 };
