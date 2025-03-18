@@ -9,7 +9,7 @@ const Footer = ({ variant = 'dashboard' }: FooterProps) => {
         <div className="container mx-auto px-4 py-12">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="space-y-4">
-              <img src="/logo.png" alt="Inspired Hospitality Audit Tool" className="h-8 w-auto" />
+              <img src="https://ctrimm.github.io/gh-pages-audit-app/logo.png" alt="Inspired Hospitality Audit Tool" className="h-8 w-auto" />
               <p className="text-sm text-muted-foreground">
                 Elevating hospitality standards through digital excellence in auditing and service quality management.
               </p>

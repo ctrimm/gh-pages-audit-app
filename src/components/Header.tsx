@@ -11,7 +11,7 @@ const Header = () => {
           onClick={() => navigate('/')}
           className="flex items-center gap-2 hover:opacity-80 transition-opacity"
         >
-          <img src="/logo.png" alt="Inspired Hospitality" className="h-8 w-auto" />
+          <img src="https://ctrimm.github.io/gh-pages-audit-app/logo.png" alt="Inspired Hospitality" className="h-8 w-auto" />
           <h1 className="text-xl font-semibold text-white">Inspired Hospitality</h1>
         </button>
         <nav>

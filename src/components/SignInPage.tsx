@@ -18,7 +18,7 @@ export const SignInPage = () => {
     <div className="min-h-screen py-10 bg-muted/30 sm:py-16 lg:py-24">
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div className="max-w-2xl mx-auto text-center">
-          <img src="/favicon.png" alt="Inspired Hospitality" className="h-16 mx-auto mb-8" />
+          <img src="https://ctrimm.github.io/gh-pages-audit-app/favicon.png" alt="Inspired Hospitality" className="h-16 mx-auto mb-8" />
         </div>
 
         <div className="relative max-w-md mx-auto mt-8">

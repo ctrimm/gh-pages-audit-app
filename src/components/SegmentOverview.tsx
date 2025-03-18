@@ -31,7 +31,7 @@ const SegmentOverview = () => {
   const estimatedTotalMinutes = Math.ceil(totalQuestions * 2);
 
   return (
-    <div className="py-8 space-y-6">
+    <div className="px-4 sm:px-6 lg:px-8 xl:px-12 py-8 space-y-6">
       <div className="flex items-center justify-between mb-6">
         <Button
           variant="ghost"

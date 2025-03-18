@@ -20,6 +20,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           <Route path="/dashboard" element={<AuditDashboard />} />
           <Route path="/audit" element={<SegmentOverview />} />
           <Route path="/audit/segment/:segmentId" element={<AuditForm />} />
+          <Route path="/report/" element={<ReportDashboard isRandomData={false} />} />
           <Route path="/report/:auditId" element={<ReportDashboard isRandomData={true} />} />
         </Route>
       </Routes>

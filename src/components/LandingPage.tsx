@@ -19,44 +19,47 @@ export const LandingPage = () => {
         <div className="absolute inset-0 hidden bg-gradient-to-r md:block from-black to-transparent"></div>
         <div className="absolute inset-0 block bg-black/60 md:hidden"></div>
 
-        <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center md:text-left md:max-w-xl lg:max-w-2xl md:pl-8">
-            <p className="text-lg font-semibold text-white/90">BY INSPIRED HOSPITALITY</p>
-            <h2 className="mt-6 text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
-              Transform Your Hotel Audits with Digital Excellence
-            </h2>
-            <p className="mt-4 text-base text-gray-200">
-              Streamline your hospitality audits with our comprehensive digital solution. 
-              Track, manage, and elevate your service standards with ease.
-            </p>
+        {/* Wrap only the content in container, not the entire hero section */}
+        <div className="relative w-full">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center md:text-left md:max-w-xl lg:max-w-2xl md:pl-8">
+              <p className="text-lg font-semibold text-white/90">BY INSPIRED HOSPITALITY</p>
+              <h2 className="mt-6 text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
+                Transform Your Hotel Audits with Digital Excellence
+              </h2>
+              <p className="mt-4 text-base text-gray-200">
+                Streamline your hospitality audits with our comprehensive digital solution. 
+                Track, manage, and elevate your service standards with ease.
+              </p>
 
-            <form action="#" method="POST" className="mt-8 lg:mt-12">
-              <div className="flex flex-col items-center sm:flex-row sm:justify-start max-w-md">
-                <div className="flex-1 w-full">
-                  <div className="relative text-gray-400 focus-within:text-gray-600">
-                    <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                      <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
-                      </svg>
+              <form action="#" method="POST" className="mt-8 lg:mt-12">
+                <div className="flex flex-col items-center sm:flex-row sm:justify-start max-w-md">
+                  <div className="flex-1 w-full">
+                    <div className="relative text-gray-400 focus-within:text-gray-600">
+                      <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
+                        </svg>
+                      </div>
+                      <input
+                        type="email"
+                        placeholder="Enter email address"
+                        className="block w-full h-[50px] pl-10 pr-4 text-base text-black placeholder-gray-500 transition-all duration-200 bg-white border-gray-200 rounded-md sm:rounded-r-none focus:outline-none focus:ring-2 focus:ring-primary"
+                        required
+                      />
                     </div>
-                    <input
-                      type="email"
-                      placeholder="Enter email address"
-                      className="block w-full h-[50px] pl-10 pr-4 text-base text-black placeholder-gray-500 transition-all duration-200 bg-white border-gray-200 rounded-md sm:rounded-r-none focus:outline-none focus:ring-2 focus:ring-primary"
-                      required
-                    />
                   </div>
-                </div>
 
-                <Button 
-                  onClick={() => navigate('/signin')}
-                  className="w-full sm:w-auto mt-4 sm:mt-0 sm:rounded-l-none h-[50px] px-8 font-medium"
-                  size="lg"
-                >
-                  Get Started
-                </Button>
-              </div>
-            </form>
+                  <Button 
+                    onClick={() => navigate('/signin')}
+                    className="w-full sm:w-auto mt-4 sm:mt-0 sm:rounded-l-none h-[50px] px-8 font-medium"
+                    size="lg"
+                  >
+                    Get Started
+                  </Button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </section>

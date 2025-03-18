@@ -113,7 +113,7 @@ const AuditForm = () => {
   );
 
   return (
-    <div className="py-8 space-y-8">
+    <div className="px-4 sm:px-6 lg:px-8 xl:px-12 py-8 space-y-8">
       <Card className="p-8 bg-gradient-to-r from-blue-50 to-indigo-50">
         <div className="space-y-4">
           <h2 className="text-2xl font-bold text-blue-900">Welcome to the {segment.name} Audit</h2>

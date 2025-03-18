@@ -104,7 +104,7 @@ export const AuditDashboard = () => {
   };
 
   return (
-    <div className="py-8 space-y-8">
+    <div className="px-4 sm:px-6 lg:px-8 xl:px-12 py-8 space-y-8">
       <div className="flex justify-between items-center mb-12">
         <h1 className="text-3xl font-bold">Your Audits</h1>
       </div>
