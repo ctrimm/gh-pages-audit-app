@@ -134,18 +134,18 @@ export const LandingPage = () => {
             </h2>
           </div>
 
-          <div className="grid items-center max-w-4xl grid-cols-2 mx-auto mt-12 md:mt-20 md:grid-cols-4 gap-x-10 gap-y-16">
-            <div className="flex items-center justify-center">
-              <img className="object-contain w-full h-8" src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=2940&auto=format&fit=crop" alt="Hotel Partner" />
+          <div className="grid items-center grid-cols-2 gap-10 sm:gap-y-16 sm:grid-cols-2 xl:grid-cols-4 mt-12 md:mt-20">
+            <div>
+              <img className="object-contain w-auto mx-auto h-36" src="https://cdn.freebiesupply.com/logos/large/2x/marriott-logo-black-and-white.png" alt="Marriott Logo" />
             </div>
-            <div className="flex items-center justify-center">
-              <img className="object-contain w-full h-8" src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=2940&auto=format&fit=crop" alt="Hotel Partner" />
+            <div>
+              <img className="object-contain w-auto mx-auto h-36" src="https://cdn.freebiesupply.com/logos/large/2x/the-ritz-carlton-logo-png-transparent.png" alt="Ritz Carlton Logo" />
             </div>
-            <div className="flex items-center justify-center">
-              <img className="object-contain w-full h-8" src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=2940&auto=format&fit=crop" alt="Hotel Partner" />
+            <div>
+              <img className="object-contain w-auto mx-auto h-36" src="https://cdn.freebiesupply.com/logos/large/2x/omni-hotels-logo-png-transparent.png" alt="Omni Hotels Logo" />
             </div>
-            <div className="flex items-center justify-center">
-              <img className="object-contain w-full h-8" src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=2940&auto=format&fit=crop" alt="Hotel Partner" />
+            <div>
+              <img className="object-contain w-auto mx-auto h-36" src="https://stories-editor.hilton.com/wp-content/uploads/2022/04/Curio-Logo-Black_HR-1.png?w=800" alt="Curio Collection by Hilton Logo" />
             </div>
           </div>
 
