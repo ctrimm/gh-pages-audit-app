@@ -20,12 +20,12 @@ const SegmentOverview = () => {
     return total + count;
   }, 0);
 
-  const hasPhotoRequirements = requirements.sample_data.segments.some(segment =>
-    segment.questions.some(q =>
-      q.type === 'photo' ||
-      ('conditionalQuestions' in q && q.conditionalQuestions?.some(cq => cq.type === 'photo'))
-    )
-  );
+  // const hasPhotoRequirements = requirements.sample_data.segments.some(segment =>
+  //   segment.questions.some(q =>
+  //     q.type === 'photo' ||
+  //     ('conditionalQuestions' in q && q.conditionalQuestions?.some(cq => cq.type === 'photo'))
+  //   )
+  // );
 
   // Estimate total time (2 min per question)
   const estimatedTotalMinutes = Math.ceil(totalQuestions * 2);

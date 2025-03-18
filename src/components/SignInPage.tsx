@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from './ui/button';
-import { Card } from './ui/card';
 
 export const SignInPage = () => {
   const navigate = useNavigate();
