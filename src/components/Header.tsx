@@ -12,12 +12,12 @@ const Header = () => {
           className="flex items-center gap-2 hover:opacity-80 transition-opacity"
         >
           <img src="https://ctrimm.github.io/gh-pages-audit-app/logo.png" alt="Inspired Hospitality" className="h-8 w-auto" />
-          <h1 className="text-xl font-semibold text-white">Inspired Hospitality</h1>
+          {/* <h1 className="text-xl font-semibold text-white">Inspired Hospitality</h1> */}
         </button>
         <nav>
           <Button 
             variant="ghost" 
-            className="text-white hover:text-white/80"
+            className="text-white hover:bg-blue-800 hover:text-white transition-colors"
             onClick={() => navigate('/signin')}
           >
             Sign In
