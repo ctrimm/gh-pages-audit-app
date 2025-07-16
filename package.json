@@ -39,7 +39,7 @@
     "postcss": "^8.4.35",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.2.2",
-    "vite": "^6.2.2"
+    "vite": "^6.3.5"
   },
   "homepage": "https://corytrimm.github.io/gh-pages-audit-app"
 }
